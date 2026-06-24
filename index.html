@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yerevan Itinerary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--accent:#c4542f;--accent2:#b1812f;--bg:#f1e7da;--ink:#2b2118;--muted:#7a6a58;--surface:#fbf5ec;--line:#e2d3c0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Hanken Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:64px 24px}
+  ::selection{background:var(--accent);color:#fff}
+  .kicker{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(40px,7vw,72px);line-height:1.02;letter-spacing:-.01em;margin-bottom:14px;text-align:center}
+  h1 em{font-style:italic;color:var(--accent)}
+  .sub{color:var(--muted);font-size:17px;max-width:520px;text-align:center;margin-bottom:48px;line-height:1.5}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;width:100%;max-width:880px}
+  a.card{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+  a.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px -18px rgba(43,33,24,.45);border-color:var(--accent)}
+  .card .n{font-family:'Space Mono',monospace;font-size:12px;color:var(--accent2);letter-spacing:.1em}
+  .card h2{font-family:'Newsreader',serif;font-weight:500;font-size:26px;margin:10px 0 8px}
+  .card p{color:var(--muted);font-size:14px;line-height:1.5}
+  .card .go{margin-top:18px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  footer{margin-top:auto;padding-top:56px;color:var(--muted);font-size:13px;font-family:'Space Mono',monospace;letter-spacing:.05em}
+</style>
+</head>
+<body>
+  <div class="kicker">Armenia &middot; Travel</div>
+  <h1>A few days in <em>Yerevan</em></h1>
+  <p class="sub">Three views of the same trip &mdash; a full itinerary, a photo gallery, and a phone-ready companion.</p>
+  <div class="grid">
+    <a class="card" href="./itinerary.html">
+      <div class="n">01</div>
+      <h2>Itinerary</h2>
+      <p>The full day-by-day plan, laid out for the desktop.</p>
+      <div class="go">Open &rarr;</div>
+    </a>
+    <a class="card" href="./gallery.html">
+      <div class="n">02</div>
+      <h2>Gallery</h2>
+      <p>A visual tour of the places along the way.</p>
+      <div class="go">Open &rarr;</div>
+    </a>
+    <a class="card" href="./mobile.html">
+      <div class="n">03</div>
+      <h2>Mobile</h2>
+      <p>The pocket version, sized for your phone.</p>
+      <div class="go">Open &rarr;</div>
+    </a>
+  </div>
+  <footer>Designed with Claude</footer>
+</body>
+</html>

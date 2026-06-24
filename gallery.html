@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{margin:0}
+  ::selection{background:var(--accent,#c4542f);color:#fff}
+</style>
+</helmet>
+<div style="{{ rootStyle }}">
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px 80px">
+
+    <!-- SECTION 1 · TITLE + GADGETS -->
+    <header style="padding:46px 0 22px">
+      <div style="display:flex;align-items:baseline;gap:14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent,#c4542f)">
+        <span>Interactive Itinerary</span>
+        <span style="color:var(--muted,#8a7868)">/ Solo</span>
+      </div>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:74px;line-height:.98;letter-spacing:-.01em;margin-top:14px;color:var(--ink,#2a2018)">Five days in <span style="font-style:italic;color:var(--accent,#c4542f)">Yerevan</span></h1>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:20px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.04em;color:var(--muted,#8a7868)">
+        <span>30 JUN – 5 JUL 2026</span>
+        <span style="color:var(--line,#e6d8c6)">·</span>
+        <span>HOT &amp; DRY · 30–35°C</span>
+        <span style="color:var(--line,#e6d8c6)">·</span>
+        <span>FIRST VISIT · GALLERIES + HERITAGE</span>
+      </div>
+      <p style="max-width:640px;margin-top:18px;font-family:'Newsreader',serif;font-size:18px;line-height:1.5;color:var(--ink,#2a2018);opacity:.82">Yerevan glows in pink tufa stone come afternoon. The plan keeps heritage and galleries for the cool mornings and leaves the city's open-air evenings loose.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px">
+        <div style="background:var(--surface,#fffaf3);border:1px solid var(--line,#e6d8c6);border-radius:9px;padding:14px 16px">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8a7868)">Yerevan time</div>
+          <div style="font-family:'Space Mono',monospace;font-size:27px;font-weight:700;color:var(--ink,#2a2018);margin-top:9px;letter-spacing:-.02em">{{ clockTime }}</div>
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent,#c4542f);margin-top:6px">{{ clockZone }}</div>
+        </div>
+        <div style="background:var(--surface,#fffaf3);border:1px solid var(--line,#e6d8c6);border-radius:9px;padding:14px 16px">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8a7868)">Trip length</div>
+          <div style="font-family:'Space Mono',monospace;font-size:27px;font-weight:700;color:var(--ink,#2a2018);margin-top:9px;letter-spacing:-.02em">{{ countLabel }}</div>
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent,#c4542f);margin-top:6px">{{ countSub }}</div>
+        </div>
+        <div style="background:var(--surface,#fffaf3);border:1px solid var(--line,#e6d8c6);border-radius:9px;padding:14px 16px">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8a7868)">Weather · 30 Jun–5 Jul</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:9px">
+            <span style="width:15px;height:15px;border-radius:50%;background:var(--accent2,#b1812f);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent2,#b1812f) 22%,transparent);flex-shrink:0"></span>
+            <span style="font-family:'Space Mono',monospace;font-size:23px;font-weight:700;color:var(--ink,#2a2018);letter-spacing:-.02em">{{ wxHi }}° / {{ wxLo }}°</span>
+          </div>
+          <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--accent,#c4542f);margin-top:6px">{{ wxNote }}</div>
+        </div>
+        <div style="background:var(--surface,#fffaf3);border:1px solid var(--line,#e6d8c6);border-radius:9px;padding:14px 16px">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8a7868)">Cash · dram (֏)</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:9px">
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent,#c4542f);width:34px">EUR</span><span style="font-family:'Space Mono',monospace;font-size:23px;font-weight:700;color:var(--ink,#2a2018);letter-spacing:-.02em">{{ fxEur }}</span></div>
+            <div style="display:flex;align-items:baseline;gap:10px"><span style="font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent,#c4542f);width:34px">USD</span><span style="font-family:'Space Mono',monospace;font-size:23px;font-weight:700;color:var(--ink,#2a2018);letter-spacing:-.02em">{{ fxUsd }}</span></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 2 · HERO CAROUSEL -->
+    <section style="padding-top:18px">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px">
+        <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent,#c4542f)">Then &amp; now · the changing city</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--muted,#8a7868)">archive + today · photos: Wikimedia Commons</span>
+      </div>
+      <div style="position:relative;width:100%;height:480px;border-radius:12px;overflow:hidden;border:1px solid var(--line,#e6d8c6);background:#15100c">
+        <sc-for list="{{ heroSlides }}" as="h" hint-placeholder-count="3">
+          <div style="{{ h.layerStyle }}">
+            <img src="{{ h.url }}" alt="{{ h.title }}" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block"/>
+            <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(18,11,7,.8),rgba(18,11,7,.08) 46%,rgba(18,11,7,.2))"></div>
+            <div style="position:absolute;left:30px;bottom:30px;right:90px">
+              <div style="display:inline-block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#1a120c;background:{{ h.tagBg }};padding:3px 9px;border-radius:999px">{{ h.era }}</div>
+              <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-top:10px">{{ h.meta }}</div>
+              <div style="font-family:'Newsreader',serif;font-weight:500;font-size:38px;line-height:1.05;color:#fff;margin-top:4px">{{ h.title }}</div>
+            </div>
+          </div>
+        </sc-for>
+        <button onClick="{{ onHeroPrev }}" aria-label="Previous" style="position:absolute;top:50%;left:18px;transform:translateY(-50%);z-index:5;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(20,14,9,.4);backdrop-filter:blur(4px);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center">‹</button>
+        <button onClick="{{ onHeroNext }}" aria-label="Next" style="position:absolute;top:50%;right:18px;transform:translateY(-50%);z-index:5;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.4);background:rgba(20,14,9,.4);backdrop-filter:blur(4px);color:#fff;font-size:22px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center">›</button>
+        <div style="position:absolute;top:18px;right:20px;z-index:5;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.1em;color:#fff;background:rgba(20,14,9,.45);backdrop-filter:blur(4px);padding:5px 11px;border-radius:999px">{{ heroCounter }}</div>
+        <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:5;display:flex;gap:7px;align-items:center">
+          <sc-for list="{{ heroDots }}" as="d" hint-placeholder-count="6">
+            <button onClick="{{ d.onClick }}" aria-label="Go to slide" style="{{ d.style }}"></button>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3 · DAY + PACE on one level -->
+    <section style="margin-top:46px;padding-top:32px;border-top:1px solid var(--line,#e6d8c6)">
+      <div style="margin-bottom:16px">
+        <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent,#c4542f)">01 · Plan your day</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:20px 30px;align-items:flex-end;justify-content:space-between">
+        <div>
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:9px">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8a7868)">Day</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted,#8a7868);opacity:.7">⇄ drag to reorder</span>
+          </div>
+          <nav style="display:flex;gap:8px;flex-wrap:wrap">
+            <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="5">
+              <button draggable="true" onClick="{{ t.onClick }}" onDragStart="{{ t.onDragStart }}" onDragEnter="{{ t.onDragEnter }}" onDragOver="{{ t.onDragOver }}" onDragEnd="{{ t.onDragEnd }}" style="{{ t.style }}">
+                <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;opacity:.7">{{ t.kicker }}</span>
+                <span style="font-family:'Newsreader',serif;font-size:18px;line-height:1.05;margin-top:3px;white-space:nowrap">{{ t.label }}</span>
+              </button>
+            </sc-for>
+          </nav>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:14px 20px;align-items:flex-end">
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8a7868);margin-bottom:9px">Pace</div>
+            <div style="display:flex;border:1px solid var(--line,#e6d8c6);border-radius:999px;overflow:hidden">
+              <sc-for list="{{ paceOpts }}" as="p" hint-placeholder-count="3">
+                <button onClick="{{ p.onClick }}" style="{{ p.style }}">{{ p.label }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <sc-if value="{{ day.gyumri }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8a7868);margin-bottom:9px">Gyumri trip</div>
+              <div style="display:flex;border:1px solid var(--line,#e6d8c6);border-radius:999px;overflow:hidden">
+                <sc-for list="{{ gyumriOpts }}" as="g" hint-placeholder-count="2">
+                  <button onClick="{{ g.onClick }}" style="{{ g.style }}">{{ g.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 · THE DAY -->
+    <section style="margin-top:38px;padding-top:32px;border-top:1px solid var(--line,#e6d8c6)">
+      <div style="margin-bottom:8px">
+        <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent,#c4542f)">02 · {{ day.kicker }}</span>
+      </div>
+      <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:42px;line-height:1.03;color:var(--ink,#2a2018)">{{ day.title }}</h2>
+      <div style="margin-top:8px;font-family:'Space Mono',monospace;font-size:12px;color:var(--muted,#8a7868)">{{ stopsLabel }}</div>
+      <sc-if value="{{ day.note }}" hint-placeholder-val="">
+        <div style="margin-top:18px;padding:14px 18px;border-left:3px solid var(--accent,#c4542f);background:var(--surface,#fffaf3);font-family:'Newsreader',serif;font-size:16px;line-height:1.5;color:var(--ink,#2a2018)">{{ day.note }}</div>
+      </sc-if>
+
+      <div style="display:grid;grid-template-columns:1fr 440px;gap:46px;align-items:start;margin-top:26px">
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ cards }}" as="c" hint-placeholder-count="5">
+            <div onMouseEnter="{{ c.onEnter }}" onMouseLeave="{{ c.onLeave }}" style="{{ c.wrapStyle }}">
+              <div style="display:flex;gap:18px">
+                <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:30px">
+                  <div style="{{ c.badgeStyle }}">{{ c.n }}</div>
+                  <div style="{{ c.lineStyle }}"></div>
+                </div>
+                <div style="flex:1;padding-bottom:22px">
+                  <button onClick="{{ c.onToggle }}" style="display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:0">
+                    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+                      <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:var(--accent,#c4542f)">{{ c.time }}</span>
+                      <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted,#8a7868);border:1px solid var(--line,#e6d8c6);border-radius:999px;padding:2px 9px">{{ c.kind }}</span>
+                    </div>
+                    <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:25px;line-height:1.12;margin-top:7px;color:var(--ink,#2a2018)">{{ c.title }}</h3>
+                    <p style="font-family:'Hanken Grotesk',sans-serif;font-size:14.5px;line-height:1.5;margin-top:6px;color:var(--ink,#2a2018);opacity:.72">{{ c.blurb }}</p>
+                  </button>
+                  <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top:14px;padding:16px 18px;background:var(--surface,#fffaf3);border:1px solid var(--line,#e6d8c6);border-radius:4px">
+                      <p style="font-family:'Newsreader',serif;font-size:16px;line-height:1.55;color:var(--ink,#2a2018)">{{ c.detail }}</p>
+                      <div style="display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line,#e6d8c6)">
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                          <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8a7868)">Time</span>
+                          <span style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--ink,#2a2018)">{{ c.dur }}</span>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                          <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted,#8a7868)">Cost</span>
+                          <span style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;font-weight:600;color:var(--ink,#2a2018)">{{ c.cost }}</span>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:180px">
+                          <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent,#c4542f)">Tip</span>
+                          <span style="font-family:'Hanken Grotesk',sans-serif;font-size:14px;line-height:1.45;color:var(--ink,#2a2018)">{{ c.tip }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <aside style="position:sticky;top:20px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:10px">
+            <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink,#2a2018)">{{ mapTitle }}</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted,#8a7868)">{{ mapSub }}</span>
+          </div>
+          <div style="position:relative;width:440px;height:540px;border:1px solid var(--line,#e6d8c6);border-radius:8px;overflow:hidden;background:var(--mapbg,#ece0cf)">
+            <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="9">
+              <img src="{{ t.url }}" referrerpolicy="no-referrer" alt="" style="{{ t.style }}"/>
+            </sc-for>
+            {{ routeEl }}
+            <sc-for list="{{ pins }}" as="p" hint-placeholder-count="5">
+              <div onMouseEnter="{{ p.onEnter }}" onMouseLeave="{{ p.onLeave }}" onClick="{{ p.onClick }}" style="{{ p.wrapStyle }}">
+                <div style="{{ p.dotStyle }}">{{ p.n }}</div>
+                <sc-if value="{{ p.active }}" hint-placeholder-val="{{ false }}">
+                  <div style="position:absolute;left:50%;bottom:calc(100% + 7px);transform:translateX(-50%);white-space:nowrap;font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:600;color:#fff;background:var(--ink,#2a2018);padding:4px 9px;border-radius:4px;pointer-events:none;z-index:30">{{ p.title }}</div>
+                </sc-if>
+              </div>
+            </sc-for>
+            <div style="position:absolute;right:7px;bottom:5px;font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.02em;color:rgba(40,32,24,.55);background:rgba(255,255,255,.55);padding:1px 5px;border-radius:3px;pointer-events:none">© OpenStreetMap · CARTO</div>
+          </div>
+          <div style="margin-top:14px;font-family:'Hanken Grotesk',sans-serif;font-size:13px;line-height:1.5;color:var(--ink,#2a2018);opacity:.7">Hover a stop to locate it · click a pin to open its card.</div>
+        </aside>
+      </div>
+    </section>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:900},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;apricot&quot;,&quot;stone&quot;,&quot;pomegranate&quot;],&quot;default&quot;:&quot;apricot&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showRoute&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { day: 0, pace: 'balanced', gyumri: 'day', expanded: {}, hovered: null, order:[0,1,2,3,4], dragFrom:null, now:Date.now(), hero:0 };
+  componentWillUnmount(){ if(this._t) clearInterval(this._t); if(this._h) clearInterval(this._h); }
+  handleDragEnter(to){
+    const from = this.state.dragFrom;
+    if(from==null || from===to) return;
+    const o=[...this.state.order];
+    const [x]=o.splice(from,1); o.splice(to,0,x);
+    let day=this.state.day;
+    if(day===from) day=to;
+    else if(from<day && to>=day) day--;
+    else if(from>day && to<=day) day++;
+    this.setState({order:o, dragFrom:to, day});
+  }
+  slots(){
+    return [
+      {dow:'MON',dateShort:'30 Jun',hi:31,lo:17},
+      {dow:'TUE',dateShort:'1 Jul',hi:33,lo:18},
+      {dow:'WED',dateShort:'2 Jul',hi:34,lo:19},
+      {dow:'THU',dateShort:'3 Jul',hi:34,lo:19},
+      {dow:'FRI',dateShort:'4 Jul',hi:32,lo:18}
+    ];
+  }
+  heroImages(){
+    const fp = (n,w)=>'https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURIComponent(n)+'?width='+(w||1600);
+    return [
+      { url:fp('Republic Square, Yerevan.jpg'), title:'Republic Square', meta:'Tamanyan ensemble · pink tufa', era:'today', tagBg:'#e9c98a' },
+      { url:fp('Lenin Statue in Yerevan Lenin Square.jpg',900), title:'Lenin Square', meta:'The same square under Soviet rule', era:'archive', tagBg:'#cfa6a0' },
+      { url:fp('Zvartnots Old Terminal.jpg'), title:'Zvartnots Old Terminal', meta:'Round Soviet air terminal · 1970s', era:'today', tagBg:'#e9c98a' },
+      { url:fp('Mother-Armenia-Yerevan-Armenia.jpg'), title:'Mother Armenia', meta:'1967 · guards the city from Victory Park', era:'today', tagBg:'#e9c98a' },
+      { url:fp('Hammond Slides Armenia 36. Former Stalin monument in Yerevan.jpg',900), title:'Stalin monument', meta:'Stood on that pedestal until 1962', era:'archive', tagBg:'#cfa6a0' },
+      { url:fp('Hotel London (Yerevan, 1891).jpg',1000), title:'Hotel London', meta:'Old Yerevan · photographed 1891', era:'archive', tagBg:'#cfa6a0' }
+    ];
+  }
+  proj(lat,lng){ const s=Math.sin(lat*Math.PI/180); return { fx:(lng+180)/360, fy:(0.5 - Math.log((1+s)/(1-s))/(4*Math.PI)) }; }
+  mapData(pts, W, H){
+    if(!pts.length) pts=[[40.18,44.51]];
+    const fs=pts.map(p=>this.proj(p[0],p[1]));
+    const minx=Math.min.apply(null,fs.map(f=>f.fx)), maxx=Math.max.apply(null,fs.map(f=>f.fx));
+    const miny=Math.min.apply(null,fs.map(f=>f.fy)), maxy=Math.max.apply(null,fs.map(f=>f.fy));
+    const cfx=(minx+maxx)/2, cfy=(miny+maxy)/2;
+    const spanx=Math.max(maxx-minx,1e-7), spany=Math.max(maxy-miny,1e-7);
+    let z=Math.floor(Math.min(Math.log2(W*0.72/(256*spanx)), Math.log2(H*0.72/(256*spany))));
+    z=Math.max(12,Math.min(16,isFinite(z)?z:15));
+    const world=256*Math.pow(2,z), cx=cfx*world, cy=cfy*world, n=Math.pow(2,z);
+    const project=(lat,lng)=>{const f=this.proj(lat,lng); return {x:f.fx*world-cx+W/2, y:f.fy*world-cy+H/2};};
+    const style=(this.props.theme==='pomegranate')?'dark_all':'light_all';
+    const tiles=[];
+    for(let tx=Math.floor((cx-W/2)/256); tx<=Math.floor((cx+W/2)/256); tx++)
+      for(let ty=Math.floor((cy-H/2)/256); ty<=Math.floor((cy+H/2)/256); ty++){
+        if(tx<0||ty<0||tx>=n||ty>=n) continue;
+        tiles.push({ url:'https://a.basemaps.cartocdn.com/'+style+'/'+z+'/'+tx+'/'+ty+'@2x.png',
+          style:{position:'absolute',width:'256px',height:'256px',left:(tx*256-cx+W/2)+'px',top:(ty*256-cy+H/2)+'px'} });
+      }
+    return {tiles, project};
+  }
+
+  themes() {
+    return {
+      apricot:    { bg:'#f1e7da', surface:'#fffaf3', ink:'#2a2018', muted:'#8a7868', line:'#e6d8c6', accent:'#c4542f', accent2:'#b1812f', mapbg:'#e7e3da', onAccent:'#fff' },
+      stone:      { bg:'#eeeeec', surface:'#ffffff', ink:'#20201d', muted:'#7c7c74', line:'#e2e2dc', accent:'#4d6b60', accent2:'#9a9a8c', mapbg:'#eaeae6', onAccent:'#fff' },
+      pomegranate:{ bg:'#1f0f14', surface:'#2e171f', ink:'#f4e7dd', muted:'#b9928c', line:'#46272f', accent:'#dd4a33', accent2:'#e2a23d', mapbg:'#171018', onAccent:'#fff' }
+    };
+  }
+
+  data() {
+    return [
+      { label:'Into the\u00a0Pink City', chip:'Pink City',
+        spots:[
+          {id:'d1a',time:'09:30',title:'Settle in & first coffee',kind:'Food',tier:'core',lat:40.1832,lng:44.5142,blurb:'Drop the bags, caffeinate, get your bearings around Kentron.',detail:'Base yourself in Kentron (the centre) \u2014 everything below is walkable from here. Grab a flat white and a gata pastry to start slow.',dur:'1 h',cost:'~1,500 \u058f',tip:'Get cash (dram) early; many smaller spots and Vernissage are card-shy.'},
+          {id:'d1b',time:'11:00',title:'Republic Square',kind:'Landmark',tier:'core',lat:40.1772,lng:44.5135,blurb:'The pink-and-cream tufa ensemble at the city\u2019s heart.',detail:'Alexander Tamanyan\u2019s grand neoclassical square is the architectural thesis statement of Yerevan \u2014 rosy volcanic tufa, arcades and the Government House clock.',dur:'30 min',cost:'Free',tip:'Come back tonight for the singing-fountains light show on the same square.'},
+          {id:'d1c',time:'11:30',title:'National Gallery & History Museum',kind:'Gallery',tier:'core',lat:40.1780,lng:44.5152,blurb:'Armenia\u2019s flagship art + history under one roof on the square.',detail:'The National Gallery holds Armenian masters (Aivazovsky\u2019s seascapes, Saryan) plus European works; the History Museum below traces 3,000 years from Urartu onward.',dur:'2.5 h',cost:'2,500 \u058f',tip:'Start top-floor (Armenian art) while you\u2019re fresh; Aivazovsky room is the highlight.'},
+          {id:'d1d',time:'14:30',title:'Lunch on Abovyan St',kind:'Food',tier:'plus',lat:40.1828,lng:44.5168,blurb:'Leafy historic street lined with cafes.',detail:'Abovyan keeps some of the oldest facades in town. Easy spot for khorovats (grilled meats) or a lighter salad before the afternoon.',dur:'1 h',cost:'3,000\u20135,000 \u058f',tip:'Sit in shade \u2014 early-July afternoons hit the low 30s.'},
+          {id:'d1e',time:'16:00',title:'Vernissage open-air market',kind:'Market',tier:'plus',lat:40.1761,lng:44.5168,blurb:'Sprawling craft, carpet and curio bazaar.',detail:'Hand-knotted carpets, khachkar carvings, silver, Soviet ephemera and obsidian trinkets. Great for souvenirs and people-watching.',dur:'1 h',cost:'Free entry',tip:'It\u2019s biggest at weekends; on a Monday expect a lighter, calmer subset of stalls.'},
+          {id:'d1f',time:'18:00',title:'Northern Avenue & Swan Lake',kind:'Walk',tier:'plus',lat:40.1828,lng:44.5128,blurb:'Pedestrian boulevard linking square to opera.',detail:'Stroll the marble Northern Avenue up to the Opera and Swan Lake as the light turns gold and the city comes outdoors.',dur:'45 min',cost:'Free',tip:'Buskers and ice-cream carts appear around dusk \u2014 prime first-evening atmosphere.'},
+          {id:'d1g',time:'21:00',title:'Singing Fountains',kind:'Evening',tier:'core',lat:40.1775,lng:44.5139,blurb:'Nightly choreographed water-and-light show.',detail:'Back at Republic Square, the fountains run a music-synced light show through the summer \u2014 a proper Yerevan ritual.',dur:'45 min',cost:'Free',tip:'Shows usually run ~21:00\u201323:00 in summer; grab a bench on the museum side.'}
+        ]},
+      { label:'Cascade &\u00a0the Art Quarter', chip:'Cascade',
+        spots:[
+          {id:'d2a',time:'09:30',title:'AHA Collective \u2014 coffee & design',kind:'Design',tier:'core',lat:40.1872,lng:44.5132,blurb:'Concept space: specialty coffee, design objects, local makers.',detail:'A calm, well-curated start \u2014 good coffee alongside Armenian design goods and rotating creative projects. A modern counterpoint to the day\u2019s heritage.',dur:'45 min',cost:'~2,000 \u058f',tip:'Check opening time the night before; it\u2019s a small independent space.'},
+          {id:'d2b',time:'11:00',title:'Cascade Complex',kind:'Landmark',tier:'core',lat:40.1908,lng:44.5152,blurb:'Monumental limestone stairway-garden climbing the hillside.',detail:'A giant stepped sculpture-garden of fountains and terraces. Ride the indoor escalators up, walk the terraces down \u2014 the city and (on clear mornings) Mt Ararat open up behind you.',dur:'1 h',cost:'Free',tip:'Mornings are clearest for the Ararat view before summer haze builds.'},
+          {id:'d2c',time:'11:30',title:'Cafesjian Center for the Arts',kind:'Gallery',tier:'core',lat:40.1898,lng:44.5150,blurb:'Modern art woven through the Cascade itself.',detail:'Botero\u2019s fat cat, Chihuly glass, Swarovski and rotating contemporary shows \u2014 the museum is literally built into the staircase.',dur:'1.5 h',cost:'Free / donation',tip:'The outdoor terraces are part of the collection \u2014 don\u2019t rush past the sculptures.'},
+          {id:'d2d',time:'13:30',title:'Lunch at the Cascade cafes',kind:'Food',tier:'plus',lat:40.1881,lng:44.5147,blurb:'Tamanyan-statue plaza, ringed by terraces.',detail:'The plaza at the foot of the Cascade is one long row of cafes \u2014 easy, shaded, central. Good people-watching over a cold tan or lemonade.',dur:'1 h',cost:'3,000\u20136,000 \u058f',tip:'Try matsun-based or apricot drinks \u2014 both very Armenian and very cooling.'},
+          {id:'d2e',time:'15:00',title:'Opera House & Freedom Square',kind:'Landmark',tier:'plus',lat:40.1857,lng:44.5139,blurb:'Tamanyan\u2019s twin-hall rotunda and its leafy square.',detail:'The Spendiaryan Opera and Ballet Theatre anchors the cultural heart; the surrounding park and Swan Lake are pure Yerevan promenade.',dur:'40 min',cost:'Free (exterior)',tip:'Check the summer programme \u2014 an opera or ballet ticket is often very affordable.'},
+          {id:'d2f',time:'16:30',title:'Saryan Street wine walk',kind:'Wine',tier:'extra',lat:40.1846,lng:44.5118,blurb:'Yerevan\u2019s wine-bar strip beside the Opera.',detail:'A short street densely packed with wine bars pouring Armenian volcanic-soil wines \u2014 areni, voskehat and more. Low-key tasting territory.',dur:'1 h',cost:'from 1,500 \u058f/glass',tip:'Areni Noir is the signature red; ask for something from Vayots Dzor.'},
+          {id:'d2g',time:'20:00',title:'Dinner, then a rooftop',kind:'Food',tier:'plus',lat:40.1852,lng:44.5142,blurb:'Long Armenian dinner and a high view.',detail:'Settle into a proper dinner \u2014 dolma, lavash, local cheeses \u2014 then take a rooftop for the lit-up Cascade and Opera skyline.',dur:'2 h',cost:'6,000\u201310,000 \u058f',tip:'Book a rooftop table at sunset; they fill fast in summer.'}
+        ]},
+      { label:'Memory &\u00a0Manuscripts', chip:'Memorial',
+        spots:[
+          {id:'d3a',time:'09:30',title:'Tsitsernakaberd \u2014 Genocide Memorial & Museum',kind:'Heritage',tier:'core',lat:40.1542,lng:44.4889,blurb:'The national memorial to the 1915 Armenian Genocide.',detail:'A spare, powerful hilltop complex \u2014 the cleft stele, the eternal flame ringed by basalt slabs, and an unflinching underground museum. The defining act of Armenian memory.',dur:'2 h',cost:'Free',tip:'Go first thing while it\u2019s quiet and cool; allow emotional space afterward \u2014 don\u2019t over-pack the morning.'},
+          {id:'d3b',time:'12:30',title:'Matenadaran',kind:'Heritage',tier:'core',lat:40.1944,lng:44.5208,blurb:'Repository of ancient manuscripts \u2014 one of the world\u2019s richest.',detail:'Tens of thousands of manuscripts: illuminated gospels, medieval science and medicine, the largest and smallest Armenian books. Mesrop Mashtots, inventor of the alphabet, presides on the steps.',dur:'1.5 h',cost:'2,000 \u058f',tip:'The English guided tour is genuinely worth it \u2014 the illuminations need context.'},
+          {id:'d3c',time:'15:00',title:'Late lunch in Kentron',kind:'Food',tier:'plus',lat:40.1840,lng:44.5150,blurb:'Refuel back in the centre.',detail:'Walk back down toward the centre for a relaxed late lunch \u2014 try spas (cold yogurt soup) on a hot day.',dur:'1 h',cost:'3,000\u20135,000 \u058f',tip:'Hydrate \u2014 the museum hill has little shade on the way down.'},
+          {id:'d3d',time:'16:30',title:'Mother Armenia & Victory Park',kind:'View',tier:'extra',lat:40.1960,lng:44.5258,blurb:'Towering statue and Soviet-era hilltop park.',detail:'The monumental Mother Armenia statue surveys the city from Victory Park, with old fairground rides and panoramic views toward Ararat.',dur:'1 h',cost:'Free',tip:'Best at golden hour; pair with a sunset coffee before heading down.'},
+          {id:'d3e',time:'19:00',title:'Lovers\u2019 Park, quiet evening',kind:'Walk',tier:'plus',lat:40.1888,lng:44.5188,blurb:'Landscaped Japanese-style gardens for a slow night.',detail:'A calm, manicured park to decompress after a heavy day \u2014 water, stone and shade, with a good cafe inside.',dur:'45 min',cost:'Free',tip:'A deliberately low-key evening \u2014 the morning earns it.'}
+        ]},
+      { label:'Move, Swim,\u00a0Breathe', chip:'Rest day',
+        spots:[
+          {id:'d4a',time:'08:00',title:'Morning yoga',kind:'Wellness',tier:'core',lat:40.1852,lng:44.5160,blurb:'Start the slow day with a class before the heat.',detail:'A gentle morning flow before the sun is high \u2014 several studios in the centre run drop-in classes; an open rooftop or garden session is ideal.',dur:'1.5 h',cost:'~3,000 \u058f',tip:'Book a drop-in the day before; ask whether mats and water are provided.'},
+          {id:'d4b',time:'10:30',title:'Pool & sunbathing',kind:'Wellness',tier:'core',lat:40.1808,lng:44.5082,blurb:'Long, lazy poolside stretch \u2014 the heart of the rest day.',detail:'Spend the warm middle of the day by the water. Many Yerevan hotels sell day passes to their pools and sun-decks if yours doesn\u2019t have one.',dur:'3.5 h',cost:'day pass ~5,000\u201310,000 \u058f',tip:'Reserve a day pass in advance in July \u2014 popular pools cap numbers on hot days.'},
+          {id:'d4c',time:'14:00',title:'Light poolside lunch',kind:'Food',tier:'plus',lat:40.1810,lng:44.5085,blurb:'Salads, fruit and cold drinks, no rush.',detail:'Keep it light and cool \u2014 apricots are in peak season in early July, so eat them at their best.',dur:'1 h',cost:'~4,000 \u058f',tip:'Apricot (\u0426\u056b\u0580\u0561\u0576) is the national fruit and July is prime time \u2014 buy a bagful from a street vendor.'},
+          {id:'d4d',time:'16:00',title:'Optional gallery or full rest',kind:'Rest',tier:'extra',lat:40.1860,lng:44.5150,blurb:'Dip into a small gallery \u2014 or simply nap.',detail:'If you\u2019ve got energy, a small private gallery or a return to AHA Collective fits here. If not, the whole point of today is permission to do nothing.',dur:'flexible',cost:'\u2014',tip:'This stop only appears at a fuller pace \u2014 the rest day is meant to breathe.'},
+          {id:'d4e',time:'20:00',title:'Relaxed dinner',kind:'Food',tier:'plus',lat:40.1842,lng:44.5145,blurb:'Easy neighbourhood dinner to close the day.',detail:'Nothing ambitious \u2014 a courtyard restaurant, lavash fresh from the tonir, a glass of wine. Early night before Gyumri.',dur:'1.5 h',cost:'5,000\u20138,000 \u058f',tip:'If tomorrow is the day-trip, prep the early train/transport tonight.'}
+        ]},
+      { label:'Gyumri', chip:'Gyumri', gyumri:true,
+        daySpots:[
+          {id:'g1',time:'06:30',title:'Early start to Gyumri',kind:'Travel',tier:'core',lat:40.7760,lng:43.8470,blurb:'Drive or train northwest to Armenia\u2019s second city (~126 km).',detail:'Fastest is a car/taxi (~2 h each way). The train is slower (~3 h) but cheap and scenic across the Shirak plain. Leave early to bank the cool morning hours.',dur:'~2 h',cost:'train ~1,000 \u058f / car ~25,000 \u058f',tip:'On a single day, transport is the whole constraint \u2014 lock it in the night before.'},
+          {id:'g2',time:'09:00',title:'Kumayri historic district',kind:'Heritage',tier:'core',lat:40.7868,lng:43.8420,blurb:'Armenia\u2019s best-preserved 19th-century streetscape.',detail:'Block after block of black-and-red tufa townhouses with carved wooden balconies \u2014 the architectural soul of Gyumri, largely survived the 1988 earthquake.',dur:'1.5 h',cost:'Free',tip:'Just wander \u2014 the district rewards aimless walking more than a checklist.'},
+          {id:'g3',time:'10:30',title:'Vardanants Square & churches',kind:'Landmark',tier:'core',lat:40.7894,lng:43.8470,blurb:'Central square flanked by twin cathedrals.',detail:'The grand main square, with the Holy Saviour\u2019s Church (rebuilt after the quake) and the Seven Wounds church bracketing the city\u2019s civic life.',dur:'45 min',cost:'Free',tip:'Step inside Holy Saviour\u2019s \u2014 its reconstruction story is the city in miniature.'},
+          {id:'g4',time:'12:00',title:'Dzitoghtsyan Museum',kind:'Museum',tier:'plus',lat:40.7889,lng:43.8419,blurb:'Museum of urban life & national architecture.',detail:'Set in a grand black-tufa mansion, it tells Gyumri\u2019s social history \u2014 crafts, interiors, the earthquake \u2014 in the building that best embodies the local style.',dur:'1 h',cost:'1,000 \u058f',tip:'The house itself is half the exhibit; look up at the ceilings.'},
+          {id:'g5',time:'13:30',title:'A long Gyumri lunch',kind:'Food',tier:'core',lat:40.7886,lng:43.8452,blurb:'The city is famous for food and hospitality.',detail:'Gyumri takes eating seriously \u2014 hearty, generous, unpretentious. The right move on a day trip is a proper sit-down lunch, not a grab-and-go.',dur:'1.5 h',cost:'4,000\u20137,000 \u058f',tip:'Gyumri humour and hospitality are legendary \u2014 lean into a slow table.'},
+          {id:'g6',time:'15:30',title:'Aslamazyan Sisters Gallery',kind:'Gallery',tier:'plus',lat:40.7900,lng:43.8462,blurb:'Vivid ceramics and paintings by two local sisters.',detail:'A joyful, colour-soaked collection from Mariam and Yeranuhi Aslamazyan \u2014 a bright contrast to the city\u2019s sober stone.',dur:'45 min',cost:'1,000 \u058f',tip:'Small and quick \u2014 perfect to slot before the road home.'},
+          {id:'g7',time:'17:00',title:'Black Fortress (Sev Berd)',kind:'Landmark',tier:'extra',lat:40.7986,lng:43.8300,blurb:'Circular 19th-century Russian-era fortress.',detail:'A brooding round basalt fort on the edge of town, now an event/venue space \u2014 worth it only if your transport timing is comfortable.',dur:'40 min',cost:'varies',tip:'Skip if the return clock is tight \u2014 don\u2019t miss the last train chasing this.'},
+          {id:'g8',time:'19:00',title:'Return to Yerevan',kind:'Travel',tier:'core',lat:40.7760,lng:43.8470,blurb:'Back on the road south, in by late evening.',detail:'Aim to be moving by early evening so you\u2019re back in Yerevan for a relaxed last night.',dur:'~2 h',cost:'as morning',tip:'Confirm the return train time at the station on arrival \u2014 schedules are sparse.'}
+        ],
+        nightSpots:[
+          {id:'n1',time:'Fri 11:00',title:'Late, unhurried departure',kind:'Travel',tier:'core',lat:40.7760,lng:43.8470,blurb:'No dawn alarm \u2014 the overnight lets you ease north.',detail:'With a night in hand, leave mid-morning. Same ~2 h by car or ~3 h by train, but none of the day-trip clock-watching.',dur:'~2 h',cost:'as day trip',tip:'The overnight is the calmer, more local way to do Gyumri \u2014 highly recommended over the rush.'},
+          {id:'n2',time:'Fri 13:30',title:'Lunch & check in',kind:'Food',tier:'core',lat:40.7875,lng:43.8425,blurb:'Drop bags at a Kumayri guesthouse, then eat.',detail:'Stay inside the historic district if you can \u2014 a tufa guesthouse puts you in the atmosphere. Then a long welcome lunch.',dur:'1.5 h',cost:'room ~12,000\u201320,000 \u058f',tip:'Family-run guesthouses in Kumayri are the characterful choice.'},
+          {id:'n3',time:'Fri 15:00',title:'Kumayri district, slow wander',kind:'Heritage',tier:'core',lat:40.7868,lng:43.8420,blurb:'The historic streets without the day-trip rush.',detail:'Roam the carved-balcony townhouses at ease, ducking into courtyards and craft workshops as you find them.',dur:'2 h',cost:'Free',tip:'Late afternoon light on the black-and-red tufa is the photograph.'},
+          {id:'n4',time:'Fri 17:30',title:'Aslamazyan Sisters Gallery',kind:'Gallery',tier:'plus',lat:40.7900,lng:43.8462,blurb:'Bright ceramics break up the stone.',detail:'The Aslamazyan sisters\u2019 colour-soaked work \u2014 an easy, joyful late-afternoon stop.',dur:'45 min',cost:'1,000 \u058f',tip:'Check it closes around 17\u201318:00 \u2014 go before dinner.'},
+          {id:'n5',time:'Fri 19:30',title:'Dinner & Gyumri pub culture',kind:'Food',tier:'core',lat:40.7888,lng:43.8455,blurb:'The real reward of staying over.',detail:'Gyumri\u2019s evenings \u2014 hearty food, local beer, live music and that famous wit \u2014 are what a day trip can never reach. Settle in.',dur:'2.5 h',cost:'5,000\u20139,000 \u058f',tip:'Ask your guesthouse where the locals actually drink.'},
+          {id:'n6',time:'Fri 22:00',title:'Vardanants Square at night',kind:'Walk',tier:'plus',lat:40.7894,lng:43.8470,blurb:'The lit square and cathedrals after dark.',detail:'A short night stroll \u2014 the floodlit churches and quiet square close the evening well.',dur:'30 min',cost:'Free',tip:'Cooler and calmer than midday \u2014 the nicest time on the square.'},
+          {id:'n7',time:'Sat 08:30',title:'Morning market & bakeries',kind:'Market',tier:'plus',lat:40.7905,lng:43.8488,blurb:'Breakfast where Gyumri shops.',detail:'Fresh bread, cheese and the morning bustle \u2014 the everyday rhythm a day-tripper sleeps through.',dur:'1 h',cost:'~2,000 \u058f',tip:'Buy pastries for the road back.'},
+          {id:'n8',time:'Sat 09:30',title:'Holy Saviour\u2019s & Seven Wounds',kind:'Heritage',tier:'core',lat:40.7894,lng:43.8470,blurb:'The cathedrals, unhurried, in morning light.',detail:'Return to Vardanants Square to actually go inside both churches \u2014 the reconstruction of Holy Saviour\u2019s is moving up close.',dur:'1 h',cost:'Free',tip:'Mornings are quietest for the interiors.'},
+          {id:'n9',time:'Sat 11:00',title:'Dzitoghtsyan Museum',kind:'Museum',tier:'plus',lat:40.7889,lng:43.8419,blurb:'Urban-life museum in a black-tufa mansion.',detail:'With time on your side, give the social-history museum its due \u2014 crafts, interiors and the 1988 earthquake.',dur:'1 h',cost:'1,000 \u058f',tip:'The mansion\u2019s carved ceilings are worth the entry alone.'},
+          {id:'n10',time:'Sat 14:00',title:'Return to Yerevan',kind:'Travel',tier:'core',lat:40.7760,lng:43.8470,blurb:'Back south by early afternoon.',detail:'A relaxed drive or train back, in good time for any onward plans or a final Yerevan evening on 5 July.',dur:'~2 h',cost:'as outbound',tip:'You\u2019ll arrive rested rather than wrung out \u2014 the case for the overnight.'}
+        ]}
+    ];
+  }
+
+  setPace(p){ this.setState({pace:p}); }
+  setGyumri(g){ this.setState({gyumri:g}); }
+  setHover(id){ this.setState({hovered:id}); }
+  toggle(id){ this.setState(s=>({expanded:{...s.expanded,[id]:!s.expanded[id]}})); }
+
+  renderVals(){
+    const T = this.themes()[this.props.theme || 'apricot'] || this.themes().apricot;
+    const showRoute = this.props.showRoute !== false;
+    const days = this.data();
+    const slots = this.slots();
+    const order = (this.state.order && this.state.order.length===days.length) ? this.state.order : days.map((_,i)=>i);
+    const pos = Math.min(this.state.day, days.length-1);
+    const day = days[order[pos]];
+    const slot = slots[pos];
+    if(!this._t){ this._t = setInterval(()=>this.setState({now:Date.now()}),1000); }
+    if(!this._h){ this._h = setInterval(()=>this.setState(s=>({hero:(s.hero+1)%this.heroImages().length})),5500); }
+
+    const rootStyle = {
+      '--bg':T.bg,'--surface':T.surface,'--ink':T.ink,'--muted':T.muted,'--line':T.line,
+      '--accent':T.accent,'--accent2':T.accent2,'--mapbg':T.mapbg,
+      background:'var(--bg)', color:'var(--ink)', minHeight:'100%',
+      fontFamily:"'Hanken Grotesk',sans-serif", WebkitFontSmoothing:'antialiased'
+    };
+
+    const heroData = this.heroImages();
+    const hpos = this.state.hero % heroData.length;
+    const heroSlides = heroData.map((im,i)=>({
+      url:im.url, title:im.title, meta:im.meta, era:im.era, tagBg:im.tagBg,
+      layerStyle:{position:'absolute',inset:0,opacity:i===hpos?1:0,transition:'opacity .9s ease',zIndex:i===hpos?2:1}
+    }));
+    const heroDots = heroData.map((im,i)=>({
+      onClick:()=>this.setState({hero:i}),
+      style:{width:i===hpos?'22px':'8px',height:'8px',borderRadius:'999px',border:'none',cursor:'pointer',padding:0,background:i===hpos?'#fff':'rgba(255,255,255,.5)',transition:'all .3s'}
+    }));
+    const heroCounter = String(hpos+1).padStart(2,'0')+' / '+String(heroData.length).padStart(2,'0');
+    const onHeroPrev=()=>this.setState(s=>({hero:(s.hero-1+heroData.length)%heroData.length}));
+    const onHeroNext=()=>this.setState(s=>({hero:(s.hero+1)%heroData.length}));
+
+    const tabs = order.map((ci,p)=>{
+      const c = days[ci]; const sl = slots[p]; const active = p===pos; const dragging = this.state.dragFrom===p;
+      return {
+        kicker:sl.dow, label:c.chip, active, dragging,
+        onClick:()=>this.setState({day:p}),
+        onDragStart:()=>this.setState({dragFrom:p}),
+        onDragEnter:()=>this.handleDragEnter(p),
+        onDragOver:(e)=>e.preventDefault(),
+        onDragEnd:()=>this.setState({dragFrom:null}),
+        style:{ display:'flex',flexDirection:'column',alignItems:'flex-start',cursor:'grab',
+          padding:'9px 16px',borderRadius:'7px',border:'1px solid '+(active?'transparent':T.line),
+          background:active?T.accent:'transparent', color:active?T.onAccent:T.ink,
+          minWidth:'104px', transition:'all .15s', opacity:dragging?0.45:1 }
+      };
+    });
+
+    const paceDefs=[['relaxed','Relaxed'],['balanced','Balanced'],['full','Full']];
+    const segBtn=(active)=>({cursor:'pointer',border:'none',padding:'8px 18px',fontFamily:"'Hanken Grotesk',sans-serif",fontSize:'13px',fontWeight:600,background:active?T.accent:'transparent',color:active?T.onAccent:T.muted,transition:'all .15s'});
+    const paceOpts=paceDefs.map(([v,l])=>({label:l,onClick:()=>this.setPace(v),style:segBtn(this.state.pace===v)}));
+    const gyumriOpts=[['day','Day trip'],['night','Overnight']].map(([v,l])=>({label:l,onClick:()=>this.setGyumri(v),style:segBtn(this.state.gyumri===v)}));
+
+    let spots; let note = '';
+    if(day.gyumri){
+      spots = this.state.gyumri==='night' ? day.nightSpots : day.daySpots;
+      note = this.state.gyumri==='night'
+        ? 'Overnight in Gyumri ('+slot.dow+' '+slot.dateShort+' \u2192 next morning): sleep in a Kumayri guesthouse and roll back into Yerevan around midday \u2014 the calmer, more local version.'
+        : 'Single day ('+slot.dow+' '+slot.dateShort+'): out before dawn, back by late evening. Rewarding, but transport timing rules the day \u2014 switch to Overnight for the slower version.';
+    } else { spots = day.spots; }
+    const rank={relaxed:0,balanced:1,full:2};
+    const tierRank={core:0,plus:1,extra:2};
+    const visible = spots.filter(s=>tierRank[s.tier] <= rank[this.state.pace]);
+
+    const cards = visible.map((s,i)=>{
+      const open = !!this.state.expanded[s.id];
+      const hot = this.state.hovered===s.id || open;
+      return { n:i+1, time:s.time, kind:s.kind, title:s.title, blurb:s.blurb,
+        detail:s.detail, dur:s.dur, cost:s.cost, tip:s.tip, open,
+        onToggle:()=>this.toggle(s.id), onEnter:()=>this.setHover(s.id), onLeave:()=>this.setHover(null),
+        wrapStyle:{borderRadius:'6px',padding:'4px 6px 0 4px',margin:'0 -6px',transition:'background .15s',background:hot?(this.props.theme==='pomegranate'?'rgba(255,255,255,.03)':'rgba(0,0,0,.025)'):'transparent'},
+        badgeStyle:{width:'30px',height:'30px',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,fontFamily:"'Space Mono',monospace",fontSize:'13px',fontWeight:700,border:'1.5px solid '+T.accent,background:hot?T.accent:'transparent',color:hot?T.onAccent:T.accent,transition:'all .15s'},
+        lineStyle:{flex:1,width:'1.5px',background:T.line,marginTop:'4px',minHeight:'12px'} };
+    });
+
+    const W=440,H=540;
+    const dayPts = spots.filter(s=>s.lat).map(s=>[s.lat,s.lng]);
+    const mv = this.mapData(dayPts, W, H);
+    const tiles = mv.tiles;
+    const pins = visible.filter(s=>s.lat).map((s,i)=>{
+      const pt = mv.project(s.lat,s.lng);
+      const active = this.state.hovered===s.id || !!this.state.expanded[s.id];
+      return { n:i+1, title:s.title, active,
+        onEnter:()=>this.setHover(s.id), onLeave:()=>this.setHover(null), onClick:()=>this.toggle(s.id),
+        wrapStyle:{position:'absolute',left:pt.x+'px',top:pt.y+'px',transform:'translate(-50%,-50%)',cursor:'pointer',zIndex:active?20:10},
+        dotStyle:{width:active?'30px':'25px',height:active?'30px':'25px',borderRadius:'50%',display:'flex',alignItems:'center',justifyContent:'center',fontFamily:"'Space Mono',monospace",fontSize:'12px',fontWeight:700,color:T.onAccent,background:T.accent,border:'2.5px solid '+T.surface,boxShadow:'0 2px 7px rgba(0,0,0,.35)',transition:'all .15s'} };
+    });
+
+    let routeEl = null;
+    if(showRoute && pins.length>1){
+      const pts = visible.filter(s=>s.lat).map(s=>{const p=mv.project(s.lat,s.lng);return p.x+','+p.y;}).join(' ');
+      routeEl = React.createElement('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,style:{position:'absolute',inset:0,pointerEvents:'none',zIndex:5}},
+        React.createElement('polyline',{points:pts,fill:'none',stroke:T.accent,strokeWidth:3,strokeDasharray:'2 7',strokeLinecap:'round',opacity:0.85}));
+    }
+
+    const stopsLabel = visible.length+' stop'+(visible.length===1?'':'s')+' \u00b7 '+this.state.pace+' pace';
+    const mapTitle = day.gyumri ? 'Gyumri' : 'Yerevan \u00b7 Kentron';
+    const mapSub = day.gyumri ? '126 km NW · real map' : 'OpenStreetMap · CARTO';
+
+    const now = this.state.now || Date.now();
+    let clockTime='\u2014\u2014:\u2014\u2014';
+    try { clockTime = new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Yerevan',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(new Date(now)); } catch(e){}
+    const tripStart = new Date('2026-06-30T00:00:00+04:00').getTime();
+    const tripEnd = new Date('2026-07-06T00:00:00+04:00').getTime();
+    const tripDays = Math.round((tripEnd-tripStart)/86400000);
+    const countLabel = tripDays+' days';
+    const countSub = (tripDays-1)+' nights \u00b7 solo';
+    const wxHi = Math.max.apply(null, slots.map(s=>s.hi));
+    const wxLo = Math.min.apply(null, slots.map(s=>s.lo));
+
+    return { rootStyle, tabs, paceOpts, gyumriOpts,
+      heroSlides, heroDots, heroCounter, onHeroPrev, onHeroNext,
+      day:{kicker:'Day 0'+(pos+1)+' \u00b7 '+slot.dow+' '+slot.dateShort, title:day.label, gyumri:!!day.gyumri, note},
+      cards, pins, tiles, routeEl, stopsLabel, mapTitle, mapSub,
+      clockTime, clockZone:'AMT \u00b7 UTC+4', countLabel, countSub,
+      wxHi, wxLo, wxNote:'seasonal high / low \u00b7 hot, dry, sunny',
+      fxEur:'432 \u058f', fxUsd:'384 \u058f' };
+  }
+}
+</script>
+</body>
+</html>
